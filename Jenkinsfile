@@ -29,7 +29,7 @@ pipeline {
         bat '''
           docker stop build-pipeline-demo || exit 0
           docker rm build-pipeline-demo || exit 0
-          docker run -d -p 9090:8080 --name build-pipeline-demo build-pipeline-demo
+          docker run -p 9090:8080 --name build-pipeline-demo build-pipeline-demo
         '''
       }
     }
