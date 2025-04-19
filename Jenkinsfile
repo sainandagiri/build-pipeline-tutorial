@@ -8,35 +8,35 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/sainandagiri/build-pipeline-tutorial.git'
+        git 'https://github.com/YOUR_USERNAME/build-pipeline-tutorial.git'
       }
     }
 
     stage('Build App') {
       steps {
-        sh './gradlew clean build'
+        bat '.\\gradlew.bat clean build'
       }
     }
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t build-pipeline-demo .'
+        bat 'docker build -t build-pipeline-demo .'
       }
     }
 
-    stage('Run Docker Locally') {
+    stage('Run Docker') {
       steps {
-        sh 'docker run -d -p 8080:8080 build-pipeline-demo'
+        bat 'docker run -d -p 8080:8080 build-pipeline-demo'
       }
     }
   }
 
   post {
     success {
-      echo '✅ Build and Docker Image created successfully!'
+      echo '✅ Build completed!'
     }
     failure {
-      echo '❌ Build pipeline failed.'
+      echo '❌ Something went wrong.'
     }
   }
 }
